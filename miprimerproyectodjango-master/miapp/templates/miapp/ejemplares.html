@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block principal %}
+    <h2>Listado de Ejemplares</h2>
+
+    <table>
+        <tr>
+            <th>Numero de ejemeplares</th> 
+            <th>Fecha de compra</th>
+            <th>Libro</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </tr>
+        {% for libro in object_list  %}
+            <tr>
+                <td> <a href="{% url 'detalle_libro' libro.pk %}">{{ libro.numeroejemplar }}</a></td>
+                <td>{{libro.fechadecompra }}</td>
+                <td>{{libro.libro }}</td>
+                <td><a href="{% url 'editar_libro' libro.id %}">Editar</a></td>
+                <td><a href="{% url 'eliminar_ejemplar' libro.id %}">Borrar</a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+   
+
+    <a href="{% url 'crear_ejemplar' %}">Nuevo Ejemplar</a>
+{% endblock %}
+
